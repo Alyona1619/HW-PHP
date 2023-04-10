@@ -4,14 +4,14 @@ require_once __DIR__ . '/incs/data.php';
 require_once __DIR__ . '/incs/functions.php';
 
 if(!empty($_POST)){
-    debug($_POST);
+    //debug($_POST);
     $fields = load($fields);
-    debug($fields);
+    //debug($fields);
     if($errors = validate($fields)){
         debug($errors);
     }else{
         make_file($fields);
-        echo 'OK';
+        echo 'Заявка отправлена!';
     }
 }
 
@@ -23,38 +23,42 @@ if(!empty($_POST)){
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Registration</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
 <body>
 
 <div class="container">
+
     <div class="row">
+        <form action="admin.php">
+            <input type="submit" class="btn btn-info" value="Administrator" />
+        </form>
         <div class="col-md-6 offset-md-3">
             <h1>Заявка на участие в конференции</h1>
             <form method="post">
 
                 <div class="form-group">
                     <label for="name">Имя</label>
-                    <input type="text" class="form-control" id="name" name="name">
+                    <input type="text" class="form-control" id="name" name="name" required>
                 </div>
 
                 <div class="form-group">
                     <label for="surname">Фамилия</label>
-                    <input type="text" class="form-control" id="suname" name="surname">
+                    <input type="text" class="form-control" id="suname" name="surname" required>
                 </div>
 
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" name="email">
+                    <input type="email" class="form-control" id="email" name="email" required>
                 </div>
 
                 <div class="form-group">
                     <label for="phone">Телефон</label>
-                    <input type="tel" class="form-control" id="phone" name="phone">
+                    <input type="tel" class="form-control" id="phone" name="phone" required>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group form-select">
                     <label for="topic">Тематика конференции</label>
 		            <select name="topic">
 			            <option value="Бизнес">Бизнес</option>
@@ -63,9 +67,9 @@ if(!empty($_POST)){
 		            </select>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group form-select">
                     <label for="payment">Способ оплаты</label>
-		            <select name="payment" class="form-select">
+		            <select name="payment">
 			            <option value="WebMoney"> WebMoney</option>
 		                <option value="Яндекс.Деньги"> Яндекс.Деньги </option>
 		                <option value="PayPal"> PayPal </option>
